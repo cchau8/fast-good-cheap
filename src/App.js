@@ -1,51 +1,18 @@
 import "./App.css";
-import Slider from "./Slider";
-import { useState } from "react";
-function App() {
-	const [slider1, setSlider1] = useState(false);
-	const [slider2, setSlider2] = useState(false);
-	const [slider3, setSlider3] = useState(false);
+import "./components/header-footer/header-footer.css";
+import Header from "./components/header-footer/Header";
+import Footer from "./components/header-footer/Footer";
+import FastGoodCheap from "./components/FastGoodCheap";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab, faAngrycreative } from "@fortawesome/free-brands-svg-icons";
+library.add(fab, faAngrycreative);
 
-	const handleNotThree = () => {
-		const trueArr = [slider1, slider2, slider3].filter((el) => el === true);
-		if (trueArr.length === 2) {
-			const rdm = Math.floor(Math.random() * 2);
-			if (slider1 === false) {
-				rdm === 0 ? setSlider3(false) : setSlider2(false);
-			} else if (slider2 === false) {
-				rdm === 0 ? setSlider3(false) : setSlider1(false);
-			} else if (slider3 === false) {
-				rdm === 0 ? setSlider1(false) : setSlider2(false);
-			}
-		}
-	};
+function App() {
 	return (
-		<div>
-			<Slider
-				name="FAST"
-				onClick={() => {
-					setSlider1(!slider1);
-				}}
-				onChange={handleNotThree}
-				slider={slider1}
-			/>
-			<Slider
-				name="GOOD"
-				onClick={() => {
-					setSlider2(!slider2);
-				}}
-				slider={slider2}
-				onChange={handleNotThree}
-			/>
-			<Slider
-				name="CHEAP"
-				onClick={() => {
-					setSlider3(!slider3);
-					handleNotThree();
-				}}
-				slider={slider3}
-				onChange={handleNotThree}
-			/>
+		<div className="container">
+			<Header title="FAST GOOD CHEAP" />
+			<FastGoodCheap />
+			<Footer />
 		</div>
 	);
 }
